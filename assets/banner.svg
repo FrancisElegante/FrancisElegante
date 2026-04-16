@@ -163,22 +163,22 @@
     </rect>
   </g>
 
-  <!-- ── LAYER 4: tagline below prompt ──────────────────────────────────── -->
+  <!-- ── LAYER 4: tagline below prompt — real titles ────────────────────── -->
   <g transform="translate(50, 162)" class="tagline-layer">
     <text class="tagline-mono" fill="#ffaf00" opacity="0">
-      backend engineer
+      software engineer
       <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.2s" fill="freeze"/>
     </text>
-    <text x="235" class="tagline-mono" fill="#5fffff" opacity="0">·
+    <text x="258" class="tagline-mono" fill="#5fffff" opacity="0">·
       <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.4s" fill="freeze"/>
     </text>
-    <text x="258" class="tagline-mono" fill="#ff8700" opacity="0">systems operator
+    <text x="282" class="tagline-mono" fill="#ff8700" opacity="0">software analyst
       <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.5s" fill="freeze"/>
     </text>
-    <text x="498" class="tagline-mono" fill="#5fffff" opacity="0">·
+    <text x="528" class="tagline-mono" fill="#5fffff" opacity="0">·
       <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.7s" fill="freeze"/>
     </text>
-    <text x="521" class="tagline-mono" fill="#ffd700" opacity="0">multi-tenant saas
+    <text x="552" class="tagline-mono" fill="#ffd700" opacity="0">technician programmer
       <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.8s" fill="freeze"/>
     </text>
   </g>

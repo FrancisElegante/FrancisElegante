@@ -7,7 +7,7 @@
 <!-- ── HEADER: custom animated SVG banner ─────────────────────────────────── -->
 
 <a href="https://github.com/FrancisElegante">
-  <img src="./assets/banner.svg" alt="franciselegante — backend engineer · systems operator · multi-tenant saas" width="100%" />
+  <img src="./assets/banner.svg" alt="franciselegante — software engineer · software analyst · technician programmer" width="100%" />
 </a>
 
 <!-- ── STATUS BAR (systemctl-style) ───────────────────────────────────────── -->
