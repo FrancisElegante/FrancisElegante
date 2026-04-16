@@ -4,10 +4,10 @@
      Palette: ff5f00 · ff8700 · ffaf00 · ffd700 · 5fffff · 87ff00 · ff0000
      ══════════════════════════════════════════════════════════════════════════════ -->
 
-<!-- ── HEADER: fire gradient wave ─────────────────────────────────────────── -->
+<!-- ── HEADER: custom animated SVG banner ─────────────────────────────────── -->
 
 <a href="https://github.com/FrancisElegante">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:ff0000,20:ff5f00,45:ff8700,70:ffaf00,100:ffd700&height=220&section=header&text=franciselegante&fontColor=0a0a0a&fontSize=78&fontAlignY=38&desc=backend%20engineer%20%E2%80%A2%20systems%20operator%20%E2%80%A2%20multi-tenant%20infrastructure&descSize=15&descAlignY=62&animation=fadeIn" />
+  <img src="./assets/banner.svg" alt="franciselegante — backend engineer · systems operator · multi-tenant saas" width="100%" />
 </a>
 
 <!-- ── STATUS BAR (systemctl-style) ───────────────────────────────────────── -->

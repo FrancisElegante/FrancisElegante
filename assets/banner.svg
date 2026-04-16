@@ -1,0 +1,279 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 360" width="1400" height="360" preserveAspectRatio="xMidYMid slice">
+  <!-- ══════════════════════════════════════════════════════════════════════
+       franciselegante — animated banner
+       Palette: Pegasuz Panel Fire (ff0000 · ff5f00 · ff8700 · ffaf00 · ffd700)
+       Accents: 5fffff cyan · 87ff00 lime
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <defs>
+    <!-- Canvas: deep black with subtle radial warmth top-left -->
+    <radialGradient id="bg" cx="15%" cy="25%" r="80%">
+      <stop offset="0%" stop-color="#180a00"/>
+      <stop offset="40%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+
+    <!-- Fire gradient — animated cycling -->
+    <linearGradient id="fireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff0000">
+        <animate attributeName="stop-color"
+          values="#ff0000;#ff5f00;#ff8700;#ffaf00;#ffd700;#ff8700;#ff0000"
+          dur="6s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="33%" stop-color="#ff5f00">
+        <animate attributeName="stop-color"
+          values="#ff5f00;#ff8700;#ffaf00;#ffd700;#ff8700;#ff5f00;#ff0000;#ff5f00"
+          dur="6s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="66%" stop-color="#ff8700">
+        <animate attributeName="stop-color"
+          values="#ff8700;#ffaf00;#ffd700;#ff8700;#ff5f00;#ff0000;#ff5f00;#ff8700"
+          dur="6s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#ffd700">
+        <animate attributeName="stop-color"
+          values="#ffd700;#ff8700;#ff5f00;#ff0000;#ff5f00;#ff8700;#ffaf00;#ffd700"
+          dur="6s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+
+    <!-- Glow filter for text — pulsing -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="glowStrong" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Scanline pattern — static lines, the movement is on the overlay -->
+    <pattern id="scanlines" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="transparent"/>
+      <rect y="2" width="4" height="1" fill="#ff5f00" fill-opacity="0.04"/>
+    </pattern>
+
+    <!-- Grid pattern — terminal feel -->
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ff5f00" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+
+    <!-- Mask that reveals the text letter by letter -->
+    <clipPath id="textReveal">
+      <rect x="0" y="0" width="0" height="360">
+        <animate attributeName="width"
+          values="0;1400"
+          dur="2s"
+          begin="0.3s"
+          fill="freeze"
+          calcMode="spline"
+          keySplines="0.2 0.8 0.3 1"/>
+      </rect>
+    </clipPath>
+
+    <style>
+      @keyframes pulse-glow {
+        0%, 100% { opacity: 1; filter: brightness(1); }
+        50%      { opacity: 0.85; filter: brightness(1.3); }
+      }
+      @keyframes scan-move {
+        0%   { transform: translateY(-10px); }
+        100% { transform: translateY(360px); }
+      }
+      @keyframes cursor-blink {
+        0%, 49%   { opacity: 1; }
+        50%, 100% { opacity: 0; }
+      }
+      @keyframes char-flicker {
+        0%, 97%, 100% { opacity: 1; }
+        98%           { opacity: 0.3; }
+        99%           { opacity: 1; }
+      }
+      @keyframes uptime-tick {
+        0%   { opacity: 0.7; }
+        50%  { opacity: 1; }
+        100% { opacity: 0.7; }
+      }
+      @keyframes shadow-drift {
+        0%, 100% { transform: translate(0, 0); }
+        50%      { transform: translate(2px, 0); }
+      }
+
+      .main-text {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 900;
+        font-size: 140px;
+        letter-spacing: -4px;
+        animation: pulse-glow 3s ease-in-out infinite;
+      }
+      .main-text-shadow {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 900;
+        font-size: 140px;
+        letter-spacing: -4px;
+        animation: shadow-drift 4s ease-in-out infinite;
+      }
+      .tagline {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 2px;
+      }
+      .prompt {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .scan-overlay {
+        animation: scan-move 3.5s linear infinite;
+      }
+      .cursor {
+        animation: cursor-blink 1s steps(2, end) infinite;
+      }
+      .flicker {
+        animation: char-flicker 5s steps(1, end) infinite;
+      }
+      .uptime-pulse {
+        animation: uptime-tick 2s ease-in-out infinite;
+      }
+      .meta-line {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+      }
+    </style>
+  </defs>
+
+  <!-- ── LAYER 0: canvas ────────────────────────────────────────────────── -->
+  <rect width="1400" height="360" fill="url(#bg)"/>
+  <rect width="1400" height="360" fill="url(#grid)"/>
+  <rect width="1400" height="360" fill="url(#scanlines)"/>
+
+  <!-- ── LAYER 1: atmospheric dots (fake noise) ─────────────────────────── -->
+  <g opacity="0.35">
+    <circle cx="120" cy="80" r="1" fill="#ffd700"/>
+    <circle cx="340" cy="40" r="1" fill="#ff5f00"/>
+    <circle cx="680" cy="60" r="1" fill="#ff8700"/>
+    <circle cx="950" cy="30" r="1" fill="#ffd700"/>
+    <circle cx="1200" cy="50" r="1" fill="#ff5f00"/>
+    <circle cx="200" cy="310" r="1" fill="#ff8700"/>
+    <circle cx="560" cy="330" r="1" fill="#ffd700"/>
+    <circle cx="860" cy="300" r="1" fill="#ff5f00"/>
+    <circle cx="1100" cy="320" r="1" fill="#ff8700"/>
+    <circle cx="60" cy="180" r="1" fill="#ffd700"/>
+    <circle cx="1340" cy="200" r="1" fill="#ff5f00"/>
+  </g>
+
+  <!-- ── LAYER 2: top status line — boot output ─────────────────────────── -->
+  <g transform="translate(30, 30)">
+    <rect x="-2" y="-14" width="10" height="14" fill="#87ff00" opacity="0.9" class="uptime-pulse"/>
+    <text x="18" y="-1" class="meta-line" fill="#87ff00">SYSTEM ONLINE</text>
+    <text x="180" y="-1" class="meta-line" fill="#ff8700">UPTIME 99.97%</text>
+    <text x="340" y="-1" class="meta-line" fill="#ffaf00">LOAD 0.54 0.26 0.20</text>
+    <text x="570" y="-1" class="meta-line" fill="#5fffff">11 TENANTS LIVE</text>
+    <text x="780" y="-1" class="meta-line" fill="#ffd700">MEM 28%</text>
+    <text x="890" y="-1" class="meta-line" fill="#ff5f00">ACTIVE SESSION</text>
+  </g>
+
+  <!-- ── LAYER 3: prompt line (above main text) ─────────────────────────── -->
+  <g transform="translate(40, 100)">
+    <text class="prompt" fill="#87ff00">francis@server</text>
+    <text x="175" class="prompt" fill="#ffffff">:</text>
+    <text x="185" class="prompt" fill="#5fffff">~</text>
+    <text x="202" class="prompt" fill="#ffffff">$</text>
+    <text x="222" class="prompt" fill="#ff8700">./portfolio --init</text>
+  </g>
+
+  <!-- ── LAYER 4: MASSIVE NAME TEXT ─────────────────────────────────────── -->
+  <!-- Red shadow glow behind -->
+  <g filter="url(#glowStrong)">
+    <text x="40" y="230" class="main-text-shadow" fill="#ff0000" opacity="0.4">franciselegante</text>
+  </g>
+
+  <!-- Outline trace -->
+  <text x="40" y="230" class="main-text" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.3">franciselegante</text>
+
+  <!-- Main fill with fire gradient + glow + reveal clip -->
+  <g clip-path="url(#textReveal)">
+    <text x="40" y="230" class="main-text" fill="url(#fireGrad)" filter="url(#glow)">franciselegante</text>
+  </g>
+
+  <!-- ── LAYER 5: tagline below name ────────────────────────────────────── -->
+  <g transform="translate(40, 280)">
+    <text class="tagline" fill="#ffaf00" opacity="0">
+      backend engineer
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.2s" fill="freeze"/>
+    </text>
+    <text x="220" class="tagline" fill="#5fffff" opacity="0">·
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.4s" fill="freeze"/>
+    </text>
+    <text x="240" class="tagline" fill="#ff8700" opacity="0">systems operator
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.5s" fill="freeze"/>
+    </text>
+    <text x="460" class="tagline" fill="#5fffff" opacity="0">·
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.7s" fill="freeze"/>
+    </text>
+    <text x="480" class="tagline" fill="#ffd700" opacity="0">multi-tenant saas
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.8s" fill="freeze"/>
+    </text>
+    <!-- Blinking cursor at end -->
+    <rect x="700" y="-18" width="14" height="22" fill="#ff5f00" class="cursor" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="3s" fill="freeze"/>
+    </rect>
+  </g>
+
+  <!-- ── LAYER 6: moving scanline overlay ───────────────────────────────── -->
+  <g class="scan-overlay" opacity="0.6">
+    <line x1="0" y1="0" x2="1400" y2="0" stroke="#ff5f00" stroke-width="1" opacity="0.25"/>
+    <line x1="0" y1="2" x2="1400" y2="2" stroke="#ff8700" stroke-width="1" opacity="0.15"/>
+    <line x1="0" y1="5" x2="1400" y2="5" stroke="#ffaf00" stroke-width="1" opacity="0.08"/>
+  </g>
+
+  <!-- ── LAYER 7: right-side decorative code column ─────────────────────── -->
+  <g transform="translate(1050, 80)" opacity="0.45" class="flicker">
+    <text x="0" y="0" font-family="Courier New" font-size="11" fill="#ff8700">const server = express()</text>
+    <text x="0" y="18" font-family="Courier New" font-size="11" fill="#5fffff">app.use(clientResolver)</text>
+    <text x="0" y="36" font-family="Courier New" font-size="11" fill="#87ff00">app.use(auth.middleware)</text>
+    <text x="0" y="54" font-family="Courier New" font-size="11" fill="#ffaf00">app.use('/api', routes)</text>
+    <text x="0" y="72" font-family="Courier New" font-size="11" fill="#ffd700">server.listen(3001)</text>
+    <text x="0" y="90" font-family="Courier New" font-size="11" fill="#ff5f00">[✓] 11 tenants resolved</text>
+    <text x="0" y="108" font-family="Courier New" font-size="11" fill="#87ff00">[✓] schema parity OK</text>
+    <text x="0" y="126" font-family="Courier New" font-size="11" fill="#5fffff">[✓] PM2 online</text>
+    <text x="0" y="144" font-family="Courier New" font-size="11" fill="#ff8700">[✓] API :3001 ready</text>
+    <text x="0" y="162" font-family="Courier New" font-size="11" fill="#ffd700">exit 0</text>
+  </g>
+
+  <!-- ── LAYER 8: bottom status bar ─────────────────────────────────────── -->
+  <g transform="translate(40, 340)">
+    <text class="meta-line" fill="#5fffff">[SESSION]</text>
+    <text x="90" class="meta-line" fill="#ffffff">francis@vps-5767070</text>
+    <text x="290" class="meta-line" fill="#5fffff">[SHELL]</text>
+    <text x="360" class="meta-line" fill="#ffffff">zsh 5.8</text>
+    <text x="450" class="meta-line" fill="#5fffff">[EDITOR]</text>
+    <text x="525" class="meta-line" fill="#ffffff">nvim</text>
+    <text x="590" class="meta-line" fill="#5fffff">[TZ]</text>
+    <text x="625" class="meta-line" fill="#ffffff">UTC-3</text>
+    <text x="695" class="meta-line" fill="#5fffff">[STACK]</text>
+    <text x="762" class="meta-line" fill="#ffffff">node · python · mysql · redis · nginx · pm2</text>
+  </g>
+
+  <!-- ── LAYER 9: top-right corner — mode indicator ─────────────────────── -->
+  <g transform="translate(1280, 30)">
+    <rect x="0" y="-14" width="90" height="18" fill="#ff5f00" opacity="0.15" stroke="#ff5f00" stroke-width="1"/>
+    <text x="8" y="-1" class="meta-line" fill="#ff5f00">● PROD</text>
+  </g>
+
+  <!-- ── LAYER 10: left edge vertical accent bar ────────────────────────── -->
+  <rect x="0" y="0" width="4" height="360" fill="url(#fireGrad)"/>
+</svg>
